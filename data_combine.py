@@ -5,12 +5,16 @@ import csv
 
 emp_file_name = "user_data_23_4.json"
 vehicle_file_name = "user_data_23_4.csv"
-employee_info = "user_data_23_4.xml"
-print(extract_xml(employee_info))
+employee_info_file = "user_data_23_4.xml"
+
 
 
 employee_data = extract_json(emp_file_name)
 vehicle_data = extract_csv(vehicle_file_name)
+employee_info = extract_xml(employee_info_file)
+
+for data in range(min(10, len(employee_info))):
+    print(employee_info[data])
 
 def combine(file_name):
     """
@@ -18,10 +22,6 @@ def combine(file_name):
     and return the combined data
     """
     with open(file_name + ".json", 'w', newline='') as combine:
-        # writer = csv.writer(combine)
-        # header = list(employee_data[0].keys())
-        # header.extend(['Sex', 'Vehicle Make', 'Vehicle Model', 'Vehicle Year', 'Vehicle Type'])
-        # writer.writerow(header)
         json_data = []
         for employee in range(len(employee_data)):
             First_Name = employee_data[employee]['firstName']
@@ -30,7 +30,9 @@ def combine(file_name):
 
             for vehicle in range(len(vehicle_data)):
                 '''check whether the first name, second name and age are the same in both the files'''
-                if First_Name != vehicle_data[vehicle]['First Name'] and Second_Name != vehicle_data[vehicle]['Second Name'] and age != vehicle_data[vehicle]['Age (Years)']:
+                if (First_Name != vehicle_data[vehicle]['First Name']
+                    and Second_Name != vehicle_data[vehicle]['Second Name']
+                    and age != vehicle_data[vehicle]['Age (Years)']):
                     continue
                 else:
                     employee_data[employee]['Sex'] = vehicle_data[vehicle]['Sex']
@@ -38,8 +40,6 @@ def combine(file_name):
                     employee_data[employee]['Vehicle Model'] = vehicle_data[vehicle]['Vehicle Model']
                     employee_data[employee]['Vehicle Year'] = vehicle_data[vehicle]['Vehicle Year']
                     employee_data[employee]['Vehicle Type'] = vehicle_data[vehicle]['Vehicle Type']
-                    # print(employee_data[employee])
-                    # writer.writerow(employee_data[employee].values())
                     json_data.append(employee_data[employee])
                     break
         json.dump(json_data, combine, indent=4)
