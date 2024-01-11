@@ -69,5 +69,4 @@ def extract_xml2(file_path):
     except Exception as e:
         print(f"Error reading XML file: {e}")
         return None
-xml_data = extract_txt('user_data_23_4.txt')
-print(xml_data)
+
