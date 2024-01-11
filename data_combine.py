@@ -6,6 +6,7 @@ import csv
 emp_file_name = "user_data_23_4.json"
 vehicle_file_name = "user_data_23_4.csv"
 
+
 employee_data = extract_json(emp_file_name)
 vehicle_data = extract_csv(vehicle_file_name)
 
@@ -26,6 +27,7 @@ def combine(file_name):
             age = employee_data[employee]['age']
 
             for vehicle in range(len(vehicle_data)):
+                '''check whether the first name, second name and age are the same in both the files'''
                 if First_Name != vehicle_data[vehicle]['First Name'] and Second_Name != vehicle_data[vehicle]['Second Name'] and age != vehicle_data[vehicle]['Age (Years)']:
                     continue
                 else:
