@@ -9,16 +9,6 @@ vehicle_file_name = "user_data_23_4.csv"
 employee_data = extract_json(emp_file_name)
 vehicle_data = extract_csv(vehicle_file_name)
 
-count = 0
-for employee in employee_data:
-     count += 1
-
-count2 = 0
-for vehicle in vehicle_data:
-        count2 += 1
-
-print(count, "employees" , "and", count2, "vehicles")
-
 def combine(file_name):
     """
     checks for inconsistencies in the data user data and vehicle data if there are any inconsistencies it will remove the data from the list
