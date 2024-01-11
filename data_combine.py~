@@ -6,7 +6,7 @@ import csv
 emp_file_name = "user_data_23_4.json"
 vehicle_file_name = "user_data_23_4.csv"
 employee_info = "user_data_23_4.xml"
-print(extract_xml)
+print(extract_xml(employee_info))
 
 
 employee_data = extract_json(emp_file_name)
