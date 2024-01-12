@@ -1,4 +1,4 @@
-from Data_handling import extract_json, extract_csv, extract_xml
+from Dataa_handling import extract_json, extract_csv, extract_xml
 import json
 import csv
 
@@ -12,16 +12,10 @@ xml_data = "user_data_23_4.xml"
 employee_data = extract_json(emp_file_name)
 vehicle_data = extract_csv(vehicle_file_name)
 employee_info = extract_xml(xml_data)
-print( employee_data[0])
+"""print( employee_data[0])
 print(vehicle_data[0])
-print(employee_info[0])
+print(employee_info[0])"""
 
-<<<<<<< HEAD:dataa_combine.py
-"""for data in range(min(10, len(employee_info))):
-    print(employee_info[data])"""
-
-=======
->>>>>>> fbbfed0308bc2425f71c2309c493c3d5adbc02c1:data_combine.py
 def combine(file_name):
     """
     checks for inconsistencies in the data user (json file) and vehicle data (csv) if there are any inconsistencies it will remove the data from the list
