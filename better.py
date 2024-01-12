@@ -54,3 +54,13 @@ def combine(file_name):
     return True
 
 combine('efficient')
+
+ for cust in data:
+                if 'debt' in cust:
+                    debt_info = cust['debt']
+                    if isinstance(debt_info, dict):
+                        data['debt_amount'] = debt_info.get('amount', None)
+                        data['debt_period_in_years'] = debt_info.get('period_in_years', None)
+                    else:
+                        data['debt_amount'] = debt_info
+            del cust['debt']

@@ -57,19 +57,21 @@ def combine(file_name):
         json.dump(json_data, combine, indent=4)
     return True 
 
-# combine("combined_data")
+combine("combined_data")
 
-c_data = extract_json("combined_data.json")
+# c_data = extract_json("combined_data.json")
+
+for data in employee_data:
+    for key, values in data.items():
+        if key == 'debt':
+            print(data)
 
 def check():
-    for data in c_data:
-        if data['firstName'] == 'Sean' and data['lastName'] == 'Young':
-            print(data['retired'])
-            print(data['dependants'])
-            print(data['marital_Status'])
-            print(data['salary'])
-            print(data['pension'])
-            print(data['company'])
-            print(data['commute_distance'])
-
+    count = 0
+    for data in range(len(employee_data)):
+       for info in range(len(employee_info)):
+            if employee_data[data]["address_postcode"] == employee_info[info]['address_postcode']:
+                count += 1
+    print(count)   
+        
 check()
