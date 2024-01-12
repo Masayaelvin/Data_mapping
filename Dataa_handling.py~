@@ -27,7 +27,6 @@ def extract_json(file_path):
                         data[i]['debt_period'] = cust['time_period_years']
                     else:
                         data[i]['debt'] = cust
-            return data
     except Exception as e:
         print(f"Error reading JSON file: {e}")
         return None
@@ -60,4 +59,4 @@ def extract_xml(file_path):
         print(f"Error reading XML file: {e}")
         return None
 
-print(extract_json("user_data_23_4.json"))
+extract_json("user_data_23_4.json")
