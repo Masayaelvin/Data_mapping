@@ -28,21 +28,6 @@ def combine(file_name):
             Second_Name = employee_data[employee]['lastName']
             age = employee_data[employee]['age']
 
-            # for info in range(len(employee_info)):
-            #     if (First_Name != employee_info[info]['firstName']
-            #         and Second_Name != employee_info[info]['lastName']
-            #         and age != employee_info[info]['age']):
-            #         continue
-            #     else:
-            #         employee_data[employee]['retired'] = employee_info[info]['retired']
-            #         employee_data[employee]['dependants'] = employee_info[info]['dependants']
-            #         employee_data[employee]['marital_Status'] = employee_info[info]['marital_status']
-            #         employee_data[employee]['salary'] = employee_info[info]['salary']
-            #         employee_data[employee]['pension'] = employee_info[info]['pension']
-            #         employee_data[employee]['company'] = employee_info[info]['company']
-            #         employee_data[employee]['commute_distance'] = employee_info[info]['commute_distance']
-            #         break
-
             for vehicle in range(len(vehicle_data)):
                 '''check whether the first name, second name and age are the same in both the files'''
                 if (First_Name != vehicle_data[vehicle]['First Name']
