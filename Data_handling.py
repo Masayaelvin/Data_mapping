@@ -21,17 +21,12 @@ def extract_json(file_path):
             data = json.load(json_file)
         for item in data:
             if 'debt' in item:
-                # print(item)
                 try:
-                    x = float(item['debt'])
-                    # print(x)                    
+                    x = float(item['debt'])                 
                     item['debt_amount'] = item['debt']
                 except:              
-                    # print('x')
-                    # print(item['debt']['amount'])
                     item['debt_amount'] = item['debt']['amount']
                     item['debt_period_in_years'] = item['debt']['time_period_years']
-                    # print('y')
                 finally:
                     del item['debt']
         return data
