@@ -19,6 +19,20 @@ def extract_json(file_path):
     try:
         with open(file_path, 'r') as json_file:
             data = json.load(json_file)
+        for i in range(len(data)):
+            if 'debt' in data[i]:
+                cust = data[i]["debt"] 
+                cust = dict(cust)
+                print(type(cust))
+                if cust.keys() == 'debt':
+                    print('a')
+                    data[i]['debt_amount'] = cust['amount']
+                    print('x')
+                    data[i]['debt_period_in_years'] = cust['time_period_years']
+                    print('y')
+                else:
+                    data['debt_amount'] = cust
+        del data['debt']
         return data
     except Exception as e:
         print(f"Error reading JSON file: {e}")
@@ -52,3 +66,4 @@ def extract_xml(file_path):
         print(f"Error reading XML file: {e}")
         return None
 
+emp_file_name = extract_json("user_data_23_4.json")
