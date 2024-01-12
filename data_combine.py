@@ -1,17 +1,17 @@
-from Dataa_handling import extract_json, extract_csv, extract_xml
+from Data_handling import extract_json, extract_csv, extract_xml
 import json
 import csv
 
 
 emp_file_name = "user_data_23_4.json"
 vehicle_file_name = "user_data_23_4.csv"
-xml_data = "user_data_23_4.xml"
+employee_info = "user_data_23_4.xml"
 
 
 
 employee_data = extract_json(emp_file_name)
 vehicle_data = extract_csv(vehicle_file_name)
-employee_info = extract_xml(xml_data)
+employee_info = extract_xml(employee_info)
 """print( employee_data[0])
 print(vehicle_data[0])
 print(employee_info[0])"""
@@ -28,20 +28,20 @@ def combine(file_name):
             Second_Name = employee_data[employee]['lastName']
             age = employee_data[employee]['age']
 
-            for info in range(len(employee_info)):
-                if (First_Name != employee_info[info]['firstName']
-                    and Second_Name != employee_info[info]['lastName']
-                    and age != employee_info[info]['age']):
-                    continue
-                else:
-                    employee_data[employee]['retired'] = employee_info[info]['retired']
-                    employee_data[employee]['dependants'] = employee_info[info]['dependants']
-                    employee_data[employee]['marital_Status'] = employee_info[info]['marital_status']
-                    employee_data[employee]['salary'] = employee_info[info]['salary']
-                    employee_data[employee]['pension'] = employee_info[info]['pension']
-                    employee_data[employee]['company'] = employee_info[info]['company']
-                    employee_data[employee]['commute_distance'] = employee_info[info]['commute_distance']
-                    break
+            # for info in range(len(employee_info)):
+            #     if (First_Name != employee_info[info]['firstName']
+            #         and Second_Name != employee_info[info]['lastName']
+            #         and age != employee_info[info]['age']):
+            #         continue
+            #     else:
+            #         employee_data[employee]['retired'] = employee_info[info]['retired']
+            #         employee_data[employee]['dependants'] = employee_info[info]['dependants']
+            #         employee_data[employee]['marital_Status'] = employee_info[info]['marital_status']
+            #         employee_data[employee]['salary'] = employee_info[info]['salary']
+            #         employee_data[employee]['pension'] = employee_info[info]['pension']
+            #         employee_data[employee]['company'] = employee_info[info]['company']
+            #         employee_data[employee]['commute_distance'] = employee_info[info]['commute_distance']
+            #         break
 
             for vehicle in range(len(vehicle_data)):
                 '''check whether the first name, second name and age are the same in both the files'''
@@ -55,39 +55,40 @@ def combine(file_name):
                     employee_data[employee]['Vehicle Model'] = vehicle_data[vehicle]['Vehicle Model']
                     employee_data[employee]['Vehicle Year'] = vehicle_data[vehicle]['Vehicle Year']
                     employee_data[employee]['Vehicle Type'] = vehicle_data[vehicle]['Vehicle Type']
+                    
                     """json_data.append(employee_data[employee])"""
-            for x in range(len(xml_data)):
-                if (First_Name != xml_data[x]['firstName'] and Second_Name != xml_data[x]['lastName'] and age != xml_data[x]['age'] and 
-                    employee_data[employee]['Sex'] != xml_data[x]['sex']):
+            for x in range(len(employee_info)):
+                if (First_Name != employee_info[x]['firstName'] and Second_Name != employee_info[x]['lastName'] and age != employee_info[x]['age'] and 
+                    employee_data[employee]['Sex'] != employee_info[x]['sex']):
                     continue
                 else:
-                    employee_data[employee]['Retired'] = xml_data[x]['retired']
-                    employee_data[employee]['Dependants'] = xml_data[x]['dependants']
-                    employee_data[employee]['Marital_Status'] = xml_data[x]['marital_status']
-                    employee_data[employee]['Salary'] = xml_data[x]['salary']
-                    employee_data[employee]['Pension'] = xml_data[x]['pension']
-                    employee_data[employee]['Company'] = xml_data[x]['company']
-                    employee_data[employee]['Commute_Distance'] = xml_data[x]['commute_distance']
-                    employee_data[employee]['Address_Code'] = xml_data[x]['address_code']
-                    json_data.append(employee_data[employee])
-        json.dump(json_data, combine)
+                    employee_data[employee]['Retired'] = employee_info[x]['retired']
+                    employee_data[employee]['Dependants'] = employee_info[x]['dependants']
+                    employee_data[employee]['Marital_Status'] = employee_info[x]['marital_status']
+                    employee_data[employee]['Salary'] = employee_info[x]['salary']
+                    employee_data[employee]['Pension'] = employee_info[x]['pension']
+                    employee_data[employee]['Company'] = employee_info[x]['company']
+                    employee_data[employee]['Commute_Distance'] = employee_info[x]['commute_distance']
+                    employee_data[employee]['Address_Code'] = employee_info[x]['address_postcode']
+            json_data.append(employee_data[employee])
+        json.dump(json_data, combine, indent=4)
     return True 
 
 combine("combined_data")
 
 # c_data = extract_json("combined_data.json")
 
-for data in employee_data:
-    for key, values in data.items():
-        if key == 'debt':
-            print(data)
+# for data in employee_data:
+#     for key, values in data.items():
+#         if key == 'debt':
+#             print(data)
 
-def check():
-    count = 0
-    for data in range(len(employee_data)):
-       for info in range(len(employee_info)):
-            if employee_data[data]["address_postcode"] == employee_info[info]['address_postcode']:
-                count += 1
-    print(count)   
+# def check():
+#     count = 0
+#     for data in range(len(employee_data)):
+#        for info in range(len(employee_info)):
+#             if employee_data[data]["address_postcode"] == employee_info[info]['address_postcode']:
+#                 count += 1
+#     print(count)   
         
-check()
+# check()

@@ -19,15 +19,23 @@ def extract_json(file_path):
     try:
         with open(file_path, 'r') as json_file:
             data = json.load(json_file)
-            for i in range(len(data)):
-                if isinstance(data[i], dict) and 'debt' in data[i]:
-                    cust = data[i]['debt']
-                    if isinstance(cust, dict):
-                        data[i]['debt'] = cust['amount']
-                        data[i]['debt_period'] = cust['time_period_years']
-                    else:
-                        data[i]['debt'] = cust
-            return data
+        for item in data:
+            if 'debt' in item:
+                # print(item)
+                try:
+                    x = float(item['debt'])
+                    # print(x)                    
+                    item['debt_amount'] = item['debt']
+                except:              
+                    # print('x')
+                    # print(item['debt']['amount'])
+                    item['debt_amount'] = item['debt']['amount']
+                    item['debt_period_in_years'] = item['debt']['time_period_years']
+                    # print('y')
+                finally:
+                    del item['debt']
+        return data
+    
     except Exception as e:
         print(f"Error reading JSON file: {e}")
         return None
@@ -60,4 +68,5 @@ def extract_xml(file_path):
         print(f"Error reading XML file: {e}")
         return None
 
-print(extract_json("user_data_23_4.json"))
+x =  extract_json("user_data_23_4.json")
+
