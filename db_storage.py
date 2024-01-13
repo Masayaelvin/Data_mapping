@@ -6,7 +6,7 @@ import json
 
 db = Database()
 # Set the MySQL database connection string
-db.bind(provider='mysql', host='localhost', user='mainanorbert', passwd='pope@2019', db='customer_data')
+db.bind(provider='mysql', host='localhost', user='root', passwd='@Ma$aya2000', db='pony_test')
 
 class Customer(db.Entity):
     """Defining a class entity for customer fields"""
@@ -44,9 +44,9 @@ db.generate_mapping(create_tables=True)
 with open("combined_data.json", 'r') as json_file:
     json_data = json.load(json_file)
 # Insert data into the MySQL database
-with db_session:
-    for data in json_data:
-        Customer(**data)
+    with db_session:
+        for data in json_data:
+            Customer(**data)
 
 # Commit changes to the database
 db.commit()
