@@ -12,7 +12,7 @@ customer_info_file = "user_data_23_4.xml"
 customer_details = extract_json(customer_details_file)
 customer_vehicle = extract_csv(customer_vehicle_file)
 customer_info = extract_xml(customer_info_file)
-print(customer_info)
+# print(customer_info)
 """print( employee_data[0])
 print(vehicle_data[0])
 print(employee_info[0])"""
