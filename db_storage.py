@@ -5,8 +5,12 @@ from pony.orm import Database, Optional, Required, db_session
 import json
 
 db = Database()
+# Set the MySQL database connection string
+db.bind(provider='mysql', host='localhost', user='mainanorbert', passwd='pope@2019', db='customer_data')
+
 class Customer(db.Entity):
     """Defining a class entity for customer fields"""
+    __table__ = 'Customers'
     firstName = Required(str)
     lastName = Required(str)
     age = Required(int)
@@ -33,9 +37,6 @@ class Customer(db.Entity):
     Address_Code = Required(str)
     debt_amount = Optional(str, nullable=True)
     debt_period_in_years = Optional(int, nullable=True)
-
-# Set the MySQL database connection string
-db.bind(provider='mysql', host='localhost', user='mainanorbert', passwd='pope@2019', db='customer_data')
 
 # Generate the database schema
 db.generate_mapping(create_tables=True)
