@@ -57,7 +57,6 @@ def extract_xml(file_path):
             for attr_name, attr_value in user_elem.attrib.items():
                 record_data[attr_name] = attr_value
             data.append(record_data)
-
         return data
     except Exception as e:
         print(f"Error reading XML file: {e}")
