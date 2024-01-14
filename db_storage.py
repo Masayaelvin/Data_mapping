@@ -51,3 +51,4 @@ with open("combined_data.json", 'r') as json_file:
 # Commit changes to the database
 db.commit()
 
+
