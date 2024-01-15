@@ -71,10 +71,12 @@ def extract_xml(file_path):
 customer_details_file = "user_data_23_4.json"
 customer_vehicle_file = "user_data_23_4.csv"
 customer_info_file = "user_data_23_4.xml"
-
+print("reading from files data...")
 customer_details = extract_json(customer_details_file)
 customer_vehicle = extract_csv(customer_vehicle_file)
 customer_info = extract_xml(customer_info_file)
+print("read success!")
+
 
 def combine(file_name):
     """
@@ -82,6 +84,7 @@ def combine(file_name):
     """
     with open(file_name + ".json", 'w', newline='') as combine:
         json_data = []
+        print("checking for inconsistencies...")
         for i in range(len(customer_details)):
             First_Name = customer_details[i]['firstName']
             Second_Name = customer_details[i]['lastName']
@@ -116,11 +119,15 @@ def combine(file_name):
                     customer_details[i]['Address_Code'] = customer_info[y]['address_postcode']
             json_data.append(customer_details[i])
         json.dump(json_data, combine, indent=4)
+    print("inconsitency check complete!")
     return True 
 
+print("combining data...")
 combine("combined_data")
+print("data succesfully combined! check combined_data.json")
 
 #After the data has been filtered for incosistencies its mapped in the database using ponyORM 
+print("Mapping combined data to database...")
 db = Database()
 #Set the MySQL database connection string
 db.bind(provider='mysql', host='localhost', user='root', passwd='@Ma$aya2000', db='pony_test')
@@ -158,7 +165,7 @@ class Customer(db.Entity):
 # Generate the database schema
 db.generate_mapping(create_tables=True)
 
-with open("merged_data.json", 'r') as json_file:
+with open("combined_data.json", 'r') as json_file:
     json_data = json.load(json_file)
 # Insert data into the MySQL database
     with db_session:
@@ -167,3 +174,4 @@ with open("merged_data.json", 'r') as json_file:
 
 # Commit changes to the database
 db.commit()
+print("data succesfully mapped to database")
