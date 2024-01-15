@@ -2,9 +2,12 @@
 import csv
 import json
 import xml.etree.ElementTree as ET
+"""This code is for reading data from various types of files"""
 
 # Function to extract data from CSV file
+
 def extract_csv(file_path):
+    """extracts data from csv file"""
     try:
         with open(file_path, 'r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
@@ -52,7 +55,7 @@ def extract_xml(file_path):
         root = tree.getroot()
 
         data = []
-        for user_elem in root.findall('.//user'):  # Assuming 'user' is the XML element containing user data
+        for user_elem in root.findall('.//user'):
             record_data = {}
             for attr_name, attr_value in user_elem.attrib.items():
                 record_data[attr_name] = attr_value
@@ -62,4 +65,3 @@ def extract_xml(file_path):
         print(f"Error reading XML file: {e}")
         return None
 
-x =  extract_json("user_data_23_4.json")
