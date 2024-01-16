@@ -17,7 +17,7 @@ def extract_csv(file_path):
     except Exception as e:
         print(f"Error reading CSV file: {e}")
         return None
-
+# extracting data from json file
 def extract_json(file_path):
     """Function to extract data from JSON file"""
     try:
@@ -38,7 +38,7 @@ def extract_json(file_path):
     except Exception as e:
         print(f"Error reading JSON file: {e}")
         return None
-
+# extracting data from txt file
 def extract_txt(file_path):
     """ Function to extract data from text file"""
     try:
@@ -48,7 +48,7 @@ def extract_txt(file_path):
     except Exception as e:
         print(f"Error reading TXT file: {e}")
         return None
-
+# extracting data from xml file
 def extract_xml(file_path):
     """ Function to extract data from XML file"""
     try:
@@ -67,7 +67,7 @@ def extract_xml(file_path):
         return None
     
 
-#This section is where data is compaired filtered for inconsistencies and combined into a Json file
+"""This section is where data is compaired filtered for inconsistencies and combined save into a Json file"""
 customer_details_file = "user_data_23_4.json"
 customer_vehicle_file = "user_data_23_4.csv"
 customer_info_file = "user_data_23_4.xml"
@@ -126,11 +126,11 @@ print("combining data...")
 combine("combined_data")
 print("data succesfully combined! check combined_data.json")
 
-#After the data has been filtered for incosistencies its mapped in the database using ponyORM 
+""" After the data has been filtered for incosistencies it is mapped in the database using ponyORM""" 
 print("Mapping combined data to database...")
 db = Database()
-#Set the MySQL database connection string
-db.bind(provider='mysql', host='localhost', user='root', passwd='@Ma$aya2000', db='pony_test')
+# Set the MySQL database connection string
+db.bind(provider='mysql', host='localhost', user='mainanorbert', passwd='pope@2019', db='customer_data')
 
 class Customer(db.Entity):
     """Defining a class entity for customer fields"""
